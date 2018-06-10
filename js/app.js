@@ -10,6 +10,11 @@ for(let i = 0; i < icons.length; i++ ) {
   card.classList.add("card");
   card.innerHTML = `<i class="${icons[i]}"></i>`;
   cardsContainer.appendChild(card);
+
+card.addEventListener ("click", function() {
+  console.log(card.innerHTML);
+});
+
 }
 /*
  * Display the cards on the page
