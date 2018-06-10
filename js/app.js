@@ -1,15 +1,15 @@
 
-const listCards = ['fa fa-diamond','fa fa-diamond', 'fa fa-paper-plane-o',
-'fa fa-paper-plane-o','fa fa-anchor', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-bolt',
-'fa fa-cube', 'fa fa-cube', 'fa fa-leaf', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-bicycle',
-'fa fa-bomb','fa fa-bomb',
-]
+const icons = ["fa fa-diamond","fa fa-diamond", "fa fa-paper-plane-o",
+"fa fa-paper-plane-o","fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt",
+"fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle","fa fa-bomb","fa fa-bomb"];
+
 const cardsContainer = document.querySelector(".deck");
 
-for(let l=0; l< listCards.length; l++ ){
-  const card = document.createElement("div");
-  card.classlist.add("card")
-  cardsContainer.appendchild(card);
+for(let i = 0; i < icons.length; i++ ) {
+  const card = document.createElement("li");
+  card.classList.add("card");
+  card.innerHTML = `<i class="${icons[i]}"></i>`;
+  cardsContainer.appendChild(card);
 }
 /*
  * Display the cards on the page
