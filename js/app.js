@@ -5,14 +5,43 @@ const icons = ["fa fa-diamond","fa fa-diamond", "fa fa-paper-plane-o",
 
 const cardsContainer = document.querySelector(".deck");
 
+let openedCards= [];
+
+
 for(let i = 0; i < icons.length; i++ ) {
   const card = document.createElement("li");
   card.classList.add("card");
   card.innerHTML = `<i class="${icons[i]}"></i>`;
   cardsContainer.appendChild(card);
 
-card.addEventListener ("click", function() {
-  console.log(card.innerHTML);
+card.addEventListener("click", function() {
+if (openedCards.length  === 1) {
+
+const currentCard = this;
+const previousCard = openedCards[0];
+
+
+  card.classList.add("open", "show");
+  openedCards.push(this);
+
+    if(this.innerHTML === openedCards[0].innerHTML){
+
+        currentCard.classList.add("match");
+        previousCard.classList.add("match");
+
+        openedCards[];
+}     else{
+      currentCard.classList.remove("open", "show");
+      previousCard.classList.remove("open","show");
+}
+
+}
+else {
+  card.classList.add("open", "show");
+  openedCards.push(this);
+}
+
+
 });
 
 }
