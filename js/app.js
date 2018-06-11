@@ -64,6 +64,8 @@ function compare (currentCard, previousCard) {
           openedCards = [];
       }, 800);
 
+//move counter
+addMove();
 }
 
 
@@ -76,6 +78,15 @@ function isOver () {
 
 }
 }
+// move counter
+const movesContainer = document.querySelector(".moves");
+let moves = 0;
+function addMove() {
+  moves++;
+  movesContainer.innerHTML = moves;
+}
+
+
 
 //restart button
 const restartBtn = document.querySelector(".restart");
