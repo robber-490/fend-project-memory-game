@@ -6,7 +6,7 @@ const icons = ["fa fa-diamond","fa fa-diamond", "fa fa-paper-plane-o",
 const cardsContainer = document.querySelector(".deck");
 
 let openedCards= [];
-
+let matchedCards = [];
 
 for(let i = 0; i < icons.length; i++ ) {
   const card = document.createElement("li");
@@ -15,11 +15,11 @@ for(let i = 0; i < icons.length; i++ ) {
   cardsContainer.appendChild(card);
 
 card.addEventListener("click", function() {
+
+  const currentCard = this;
+  const previousCard = openedCards[0];
+
 if (openedCards.length  === 1) {
-
-const currentCard = this;
-const previousCard = openedCards[0];
-
 
   card.classList.add("open", "show");
   openedCards.push(this);
@@ -28,11 +28,16 @@ const previousCard = openedCards[0];
 
         currentCard.classList.add("match");
         previousCard.classList.add("match");
+        matchedCards.push(currentCard, previousCard);
+        openedCards = [];
 
-        openedCards[];
+        isOver();
+        
 }     else{
       currentCard.classList.remove("open", "show");
       previousCard.classList.remove("open","show");
+
+      openedCards = [];
 }
 
 }
@@ -43,6 +48,13 @@ else {
 
 
 });
+
+}
+
+function isOver () {
+  if (matchedCards.length === icons.length){
+    alert ("Congratulations! You win :)")
+  }
 
 }
 /*
