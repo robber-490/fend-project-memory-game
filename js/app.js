@@ -10,19 +10,14 @@ let matchedCards = [];
 
 //initialize the game
 function init() {
-
-  for(let i = 0; i < icons.length; i++ ) {
-    const card = document.createElement("li");
-    card.classList.add("card");
-    card.innerHTML = `<i class="${icons[i]}"></i>`;
-    cardsContainer.appendChild(card);
-
-  click (card);
-
+for (let i=0; i< icons.length; i++) {
+  const card= document.createElement("li");
+  card.classList.add("card");
+  card.innerHTML = `<i class="${icons[i]}"> </i>`;
+  cardsContainer.appendChild(card);
+  click(card);
   }
 }
-
-
 //click event function
   function click(card) {
     card.addEventListener("click", function() {
@@ -32,32 +27,15 @@ function init() {
 
   if (openedCards.length  === 1) {
 
-    card.classList.add("open", "show");
+    card.classList.add("open", "show", "disable");
     openedCards.push(this);
 
-      if(this.innerHTML === openedCards[0].innerHTML){
-
-          currentCard.classList.add("match");
-          previousCard.classList.add("match");
-          matchedCards.push(currentCard, previousCard);
-          openedCards = [];
-
-          isOver();
-
-  }     else{
-        setTimeout(function () {
-            currentCard.classList.remove("open", "show");
-            previousCard.classList.remove("open","show");
-            openedCards = [];
-        }, 800);
-
-
+  compare (currentCard, previousCard);
 
   }
 
-  }
   else {
-    card.classList.add("open", "show");
+    card.classList.add("open", "show", "disable");
     openedCards.push(this);
   }
 
@@ -65,8 +43,29 @@ function init() {
   });
 
   }
+//Compare the cards
+function compare (currentCard, previousCard) {
+   if(currentCard.innerHTML === previousCard.innerHTML){
 
-  }
+        currentCard.classList.add("match");
+        previousCard.classList.add("match");
+
+        matchedCards.push(currentCard, previousCard);
+
+        openedCards = [];
+
+        isOver();
+
+}    else{
+
+      setTimeout(function () {
+          currentCard.classList.remove("open", "show");
+          previousCard.classList.remove("open","show");
+          openedCards = [];
+      }, 800);
+
+}
+
 
 
 // end of game
@@ -76,10 +75,10 @@ function isOver () {
   }
 
 }
-
+}
 //start the game
 
-init()
+init();
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -101,7 +100,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
