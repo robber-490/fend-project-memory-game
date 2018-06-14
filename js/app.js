@@ -55,6 +55,7 @@ function compare (currentCard, previousCard) {
         openedCards = [];
 
         isOver();
+        addMove();
 
 }    else{
 
