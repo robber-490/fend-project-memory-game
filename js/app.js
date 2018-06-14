@@ -8,6 +8,14 @@ const cardsContainer = document.querySelector(".deck");
 let openedCards= [];
 let matchedCards = [];
 
+// shuffle the deck
+
+function shuffle() {
+  let deck = document.querySelector('ul.deck');
+      for (let i = deck.children.length; i >= 0; i--) {
+          deck.appendChild(deck.children[Math.random() * i | 0])}
+  }
+
 //initialize the game
 function init() {
 for (let i=0; i< icons.length; i++) {
@@ -92,6 +100,8 @@ function addMove() {
 
 // star counting system
 const starsContainer = document.querySelector(".stars");
+starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`
+
 function rating(){
     switch (moves) {
       case 15:
@@ -119,33 +129,20 @@ init ();
   matchedCards = [];
   moves = 0;
   movesContainer.innerHTML = moves;
-  starsContainer.innerHTML = rating;
+  starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+
 });
+
+
 
 //start the game
 
 init();
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+shuffle();
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
 
-    return array;
-}
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
