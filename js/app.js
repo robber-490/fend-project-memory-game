@@ -63,7 +63,7 @@ function compare (currentCard, previousCard) {
           currentCard.classList.remove("open", "show", "disable");
           previousCard.classList.remove("open","show", "disable");
           openedCards = [];
-      }, 800);
+      }, 600);
 
 //move counter
 addMove();
@@ -82,12 +82,29 @@ function isOver () {
 // move counter
 const movesContainer = document.querySelector(".moves");
 let moves = 0;
+movesContainer.innerHTML = 0
 function addMove() {
   moves++;
   movesContainer.innerHTML = moves;
+  //count starsContainer
+  rating();
 }
 
-
+// star counting system
+const starsContainer = document.querySelector(".stars");
+function rating(){
+    switch (moves) {
+      case 15:
+      starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>
+      <li><i class="fa fa-star"></i></li>`;
+        break;
+      case 20:
+      starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+        break;
+        case 25:
+        starsContainer.innerHTML = ` `
+    }
+}
 
 //restart button
 const restartBtn = document.querySelector(".restart");
@@ -100,6 +117,9 @@ init ();
 
   //empty cach
   matchedCards = [];
+  moves = 0;
+  movesContainer.innerHTML = moves;
+  starsContainer.innerHTML = rating;
 });
 
 //start the game
