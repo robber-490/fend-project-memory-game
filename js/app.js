@@ -25,6 +25,8 @@ for (let i=0; i< icons.length; i++) {
   cardsContainer.appendChild(card);
   click(card);
   }
+  initTimer();
+
 }
 //click event function
   function click(card) {
@@ -33,7 +35,7 @@ for (let i=0; i< icons.length; i++) {
     const currentCard = this;
     const previousCard = openedCards[0];
 
-  if (openedCards.length  === 1) {
+   if (openedCards.length  === 1) {
 
     card.classList.add("open", "show", "disable");
     openedCards.push(this);
@@ -65,6 +67,7 @@ function compare (currentCard, previousCard) {
         isOver();
         addMove();
 
+
 }    else{
 
       setTimeout(function () {
@@ -75,6 +78,7 @@ function compare (currentCard, previousCard) {
 
 //move counter
 addMove();
+
 }
 
 
@@ -98,18 +102,43 @@ function addMove() {
   rating();
 }
 
+// timer counter
+
+function initTimer () {
+  const minutesContainer = document.querySelector(".timerMinutes");
+  const secondsContainer = document.querySelector(".timerSeconds");
+  minutesContainer.innerHTML = 0;
+  secondsContainer.innerHTML = 0;
+
+}
+
+
+function startTimer() {
+  setInterval(setTime(), 1000);
+}
+
+let totalSeconds = 0;
+
+function setTime(){
+  const minutesContainer = document.querySelector(".timerMinutes");
+  const secondsContainer = document.querySelector(".timerSeconds");
+  ++totalSeconds;
+  secondsContainer.innerHTML = totalSeconds % 60;
+  minutesContainer.innerHTML = parseInt(totalSeconds / 60);
+}
+
 // star counting system
 const starsContainer = document.querySelector(".stars");
 starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`
 
-function rating(){
-    switch (moves) {
-      case 15:
-      starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>
-      <li><i class="fa fa-star"></i></li>`;
+          function rating(){
+        switch (moves) {
+        case 15:
+        starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>`;
         break;
-      case 20:
-      starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+        case 20:
+        starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>`;
         break;
         case 25:
         starsContainer.innerHTML = ` `
@@ -118,18 +147,18 @@ function rating(){
 
 //restart button
 const restartBtn = document.querySelector(".restart");
-restartBtn.addEventListener("click", function(){
-  //delete cards
-cardsContainer.innerHTML = "";
+  restartBtn.addEventListener("click", function(){
+    //delete cards
+    cardsContainer.innerHTML = "";
 
-  //use init to replace cards
-init ();
-
-  //empty cach
-  matchedCards = [];
-  moves = 0;
-  movesContainer.innerHTML = moves;
-  starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+    //use init to replace and shuffle cards
+    init ();
+    shuffle();
+    //empty cach
+    matchedCards = [];
+    moves = 0;
+    movesContainer.innerHTML = moves;
+    starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
 
 });
 
@@ -139,6 +168,7 @@ init ();
 
 init();
 shuffle();
+setInterval(setTime(),1000);
 
 
 
