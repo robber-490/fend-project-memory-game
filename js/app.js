@@ -24,8 +24,10 @@ for (let i=0; i< icons.length; i++) {
   card.innerHTML = `<i class="${icons[i]}"> </i>`;
   cardsContainer.appendChild(card);
   click(card);
-  }
   initTimer();
+  startTimer();
+  }
+
 
 }
 //click event function
@@ -103,7 +105,24 @@ function addMove() {
 }
 
 // timer counter
+const minutesContainer = document.querySelector(".timerMinutes");
+const secondsContainer = document.querySelector(".timerSeconds");
 
+let totalSeconds = 0;
+
+function initTimer() {
+  minutesContainer.innerHTML = 0;
+  secondsContainer.innerHTML = 0;
+}
+
+function startTimer() {
+  setInterval(setTime, 1000);
+}
+
+function setTime(){
+  ++totalSeconds;
+  secondsContainer.innerHTML = totalSeconds % 60;
+  minutesContainer.innerHTML = parseInt(totalSeconds / 60);
 function initTimer () {
   const minutesContainer = document.querySelector(".timerMinutes");
   const secondsContainer = document.querySelector(".timerSeconds");
@@ -154,6 +173,7 @@ const restartBtn = document.querySelector(".restart");
     //use init to replace and shuffle cards
     init ();
     shuffle();
+    initTimer();
     //empty cach
     matchedCards = [];
     moves = 0;
@@ -168,7 +188,8 @@ const restartBtn = document.querySelector(".restart");
 
 init();
 shuffle();
-setInterval(setTime(),1000);
+initTimer();
+
 
 
 
